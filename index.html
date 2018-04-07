@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+<body>
+<nav class="nav dark-nav">
+    <div class="container">
+        <div class="nav-heading">
+            <button class="toggle-nav" data-toggle="open-navbar1"><i class="fa fa-align-right"></i></button>
+            <a class="brand" href="#">PACMAN</a>
+        </div>
+        <div class="menu" id="open-navbar1">
+            <ul class="list">
+                <li><a class="activeNav welcomeNav" href="#" data-option="welcome"
+                       onclick="navClicked(this)">Welcome</a></li>
+                <li><a class="registerNav" href="#" data-option="register" onclick="navClicked(this)">Register</a></li>
+                <li><a class="loginNav" href="#" data-option="login" onclick="navClicked(this)">Login</a></li>
+                <li><a class="aboutNav" href="#" data-option="about" onclick="navClicked(this)">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="main" class="container-fluid">
+    <section id="welcomeSection" class="activeSection">
+        <img id="logo-img" src="images/packman-logo.png">
+        <div id="welcomeButtons">
+            <button onclick="moveTo('login')" class="button" style="vertical-align:middle"><span>Login </span></button>
+            <button onclick="moveTo('register')" class="button" style="vertical-align:middle"><span>Register </span>
+            </button>
+        </div>
+    </section>
+    <section id="registerSection">
+        <div class="container">
+            <div class="form-group">
+                <div class="page-header">
+                    <p class="lead text-center">
+                        <i class="glyphicon glyphicon-log-in"></i> Welcome To Account Registration Panel
+                    </p>
+                </div>
+                <form id="registrationForm" class="form-horizontal col-xs-4 col-xs-offset-4" role="form" method="post"
+                      action="">
+                    <label for="registrationUserName">User Name</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </div>
+                        <input class="form-control" id="registrationUserName" placeholder="User Name" type="text"
+                               name="registrationUserName">
+                    </div>
+                    <label for="registrationPassword">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-lock"></i>
+                        </div>
+                        <input class="form-control" id="registrationPassword" placeholder="Password" type="password"
+                               name="registrationPassword">
+                    </div>
+                    <label for="registrationFirstName">First Name</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </div>
+                        <input class="form-control" id="registrationFirstName" placeholder="First Name" type="text"
+                               name="registrationFirstName">
+                    </div>
+                    <label for="registrationLastName">Last Name</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </div>
+                        <input class="form-control" id="registrationLastName" placeholder="Last Name" type="text"
+                               name="registrationLastName">
+                    </div>
+                    <label for="registrationEmail">Email</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                        </div>
+                        <input class="form-control" id="registrationEmail" placeholder="Email" type="email"
+                               name="registrationEmail">
+                    </div>
+                    <label for="registrationBirthDay">Birth Day</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </div>
+                        <input class="form-control" id="registrationBirthDay" placeholder="Birth Day" type="text"
+                               name="registrationBirthDay">
+                    </div>
+                    <div class="form-row">
+                        <input id="registerSubmitButton" class="form-control btn btn-primary" type="submit"
+                               value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="loginSection">
+        <div class="container">
+            <div class="form-group">
+                <div class="page-header">
+                    <p class="lead text-center">
+                        <i class="glyphicon glyphicon-log-in"></i> Welcome To Account Login Panel
+                    </p>
+                </div>
+                <form id="loginForm" class="form-horizontal col-xs-4 col-xs-offset-4" role="form" method="post"
+                      action="">
+                    <label for="loginUserName">User Name</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </div>
+                        <input class="form-control" id="loginUserName" placeholder="User Name" type="text"
+                               name="loginUserName">
+                    </div>
+                    <label for="loginPassword">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-lock"></i>
+                        </div>
+                        <input class="form-control" id="loginPassword" placeholder="Password" type="password"
+                               name="loginPassword">
+                    </div>
+                    <div class="form-row">
+                        <input id="login-submit-button" class="form-control btn btn-primary" type="submit"
+                               value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="aboutSection">
+        <p>About</p>
+    </section>
+    <section id="gameSection">
+        <div class="row container">
+            <div id="gameInfo" class="col-sm-4">
+                <h4>User:</h4>
+                <h5 id="userName"></h5>
+                <h5>SCORE:</h5>
+                <input id="lblScore" type="text"/>
+                <h4>TIME:</h4>
+                <input id="lblTime" type="text"/>
+                <h4>Lives</h4>
+                <h5 id="lives"></h5>
+                <button onclick="newGame();return true;" class="btn btn-primary">New Game</button>
+            </div>
+            <div id="game" class="col-sm-8">
+                <canvas id="canvas" height="600" width="600"></canvas>
+            </div>
+        </div>
+    </section>
+</div>
+<audio id="myAudio">
+    <source src="music/PAC-MAN%20theme.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="code/main.js"></script>
+<script type="text/javascript" src="code/register.js"></script>
+<script type="text/javascript" src="code/login.js"></script>
+<script type="text/javascript" src="code/navbar.js"></script>
+<script type="text/javascript" src="code/game.js"></script>
+</body>
+</html>

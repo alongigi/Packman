@@ -1,0 +1,21 @@
+@import "navbar.css";
+@import "welcomeSection.css";
+@import "registerSection.css";
+@import "game.css";
+
+body {
+    background-color: lightgrey;
+}
+
+section {
+    display: none;
+}
+
+.activeSection {
+    display: block;
+}
+
+.activeNav {
+    color: white;
+}
+
