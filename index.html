@@ -12,6 +12,18 @@
 
 </head>
 <body>
+<div class="row container">
+    <div class="col-sm-4">
+        <img id="mainLogo" src="images/mainLogo.png">
+    </div>
+    <div class="col-sm-4">
+        <h3>Application name: Packman Game</h3>
+    </div>
+    <div class="col-sm-4">
+        <h3> Names of presenters</h3>
+        <p>Anatoly Ivanov, Alon Gigi</p>
+    </div>
+</div>
 <nav class="nav dark-nav">
     <div class="container">
         <div class="nav-heading">
@@ -22,9 +34,13 @@
             <ul class="list">
                 <li><a class="activeNav welcomeNav" href="#" data-option="welcome"
                        onclick="navClicked(this)">Welcome</a></li>
-                <li><a class="registerNav" href="#" data-option="register" onclick="navClicked(this)">Register</a></li>
+                <li><a class="registerNav" href="#" data-option="register" onclick="navClicked(this)">Register</a>
+                </li>
                 <li><a class="loginNav" href="#" data-option="login" onclick="navClicked(this)">Login</a></li>
-                <li><a class="aboutNav" href="#" data-option="about" onclick="navClicked(this)">About</a></li>
+                <li><a id="aboutButton" onclick="document.getElementById('id01').style.display='block'"
+                       class="aboutNav"
+                       href="#"
+                       data-option="about">About</a></li>
             </ul>
         </div>
     </div>
@@ -33,7 +49,8 @@
     <section id="welcomeSection" class="activeSection">
         <img id="logo-img" src="images/packman-logo.png">
         <div id="welcomeButtons">
-            <button onclick="moveTo('login')" class="button" style="vertical-align:middle"><span>Login </span></button>
+            <button onclick="moveTo('login')" class="button" style="vertical-align:middle"><span>Login </span>
+            </button>
             <button onclick="moveTo('register')" class="button" style="vertical-align:middle"><span>Register </span>
             </button>
         </div>
@@ -46,7 +63,8 @@
                         <i class="glyphicon glyphicon-log-in"></i> Welcome To Account Registration Panel
                     </p>
                 </div>
-                <form id="registrationForm" class="form-horizontal col-xs-4 col-xs-offset-4" role="form" method="post"
+                <form id="registrationForm" class="form-horizontal col-xs-4 col-xs-offset-4" role="form"
+                      method="post"
                       action="">
                     <label for="registrationUserName">User Name</label>
                     <div class="input-group">
@@ -138,8 +156,59 @@
             </div>
         </div>
     </section>
-    <section id="aboutSection">
-        <p>About</p>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h4> Names of presenters</h4>
+            <p>Anatoly Ivanov</p>
+            <p>Alon Gigi</p>
+            <br>
+            <p>We have not used any JQuery plugin or Template</p>
+            <p>We had no difficulty in this work :)</p>
+        </div>
+    </div>
+    <section id="preGameSection">
+        <div class="container">
+            <div class="form-group">
+                <div class="page-header">
+                    <p class="lead text-center">
+                        <i class="glyphicon glyphicon-log-in"></i> Welcome To Pre Game Panel
+                    </p>
+                </div>
+                <form id="preGameForm" class="form-horizontal col-xs-4 col-xs-offset-4" role="form" method="post"
+                      action="">
+                    <label for="numberOfBalls">Number of balls</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-menu-right"></i>
+                        </div>
+                        <input class="form-control" id="numberOfBalls" placeholder="Number of balls" type="number"
+                               name="numberOfBalls">
+                    </div>
+                    <label for="gameDuration">Game duration</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-menu-right"></i>
+                        </div>
+                        <input class="form-control" id="gameDuration" placeholder="Game duration" type="number"
+                               name="gameDuration">
+                    </div>
+                    <label for="numberOfMonsters">Number of monsters</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-menu-right"></i>
+                        </div>
+                        <input class="form-control" id="numberOfMonsters" placeholder="Number of monsters"
+                               type="number"
+                               name="numberOfMonsters">
+                    </div>
+                    <div class="form-row">
+                        <input id="start-game-submit-button" class="form-control btn btn-primary" type="submit"
+                               value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
     <section id="gameSection">
         <div class="row container">
@@ -164,6 +233,16 @@
     <source src="music/PAC-MAN%20theme.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
+<br>
+<br>
+<br>
+<footer>
+    <p>This web site contains intro section, registration section, login section, pre game section and game section</p>
+    <p>The packman is colored in yellow and after 20 points in green, the enemy is in red,
+        the bounus catch player in purple circle, and the bonus life in blue circle. </p>
+    <p>Contact information: 054-12345666</p>
+</footer>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -173,7 +252,9 @@
 <script type="text/javascript" src="code/main.js"></script>
 <script type="text/javascript" src="code/register.js"></script>
 <script type="text/javascript" src="code/login.js"></script>
+<script type="text/javascript" src="code/about.js"></script>
 <script type="text/javascript" src="code/navbar.js"></script>
+<script type="text/javascript" src="code/pre-game.js"></script>
 <script type="text/javascript" src="code/game.js"></script>
 </body>
 </html>

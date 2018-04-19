@@ -4,37 +4,38 @@ $(document).ready(function (e) {
         $("#registrationBirthDay").datepicker();
     });
 
-    $('#registrationForm').validate({
-        rules: {
-            registrationUserName: {
-                pattern: '^[a-zA-Z]*$',
-                required: true
-            },
-            registrationPassword: {
-                pattern: '^(?=.*\\d)(?=.*[a-zA-Z]).{8,200}$',
-                required: true
-            },
-            registrationFirstName: {
-                pattern: '^[a-zA-Z]*$',
-                required: true
-            },
-            registrationLastName: {
-                pattern: '^[a-zA-Z]*$',
-                required: true
-            },
-            registrationEmail: {
-                email: true,
-                required: true,
-            },
-            registrationBirthDay: {
-                date: true,
-                required: true,
-            },
+    $('#registerSubmitButton').one('click', function () {
 
-        },
-    });
+        $('#registrationForm').validate({
+            rules: {
+                registrationUserName: {
+                    pattern: '^[a-zA-Z]*$',
+                    required: true
+                },
+                registrationPassword: {
+                    pattern: '^(?=.*\\d)(?=.*[a-zA-Z]).{8,200}$',
+                    required: true
+                },
+                registrationFirstName: {
+                    pattern: '^[a-zA-Z]*$',
+                    required: true
+                },
+                registrationLastName: {
+                    pattern: '^[a-zA-Z]*$',
+                    required: true
+                },
+                registrationEmail: {
+                    email: true,
+                    required: true,
+                },
+                registrationBirthDay: {
+                    date: true,
+                    required: true,
+                },
 
-    $("#registrationForm").submit(function (event) {
+            },
+        });
+
         event.preventDefault();
         const form = $("#registrationForm");
         if (form.valid()) {

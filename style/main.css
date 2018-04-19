@@ -2,6 +2,7 @@
 @import "welcomeSection.css";
 @import "registerSection.css";
 @import "game.css";
+@import "about.css";
 
 body {
     background-color: lightgrey;
@@ -17,5 +18,9 @@ section {
 
 .activeNav {
     color: white;
+}
+
+footer {
+    border-style: dotted;
 }
 

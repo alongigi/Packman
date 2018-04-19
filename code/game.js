@@ -4,27 +4,42 @@ var board;
 var score;
 var pac_color;
 var start_time;
-var timeLeft = 60;
+var timeLeft;
 var time_elapsed;
 var interval;
 var monster1Interval;
+var monster2Interval;
+var monster3Interval;
 var catchMeInterval;
+var timeInterval;
 var balls = [];
 var monster1Cord = {};
+var monster2Cord = {};
+var monster3Cord = {};
 var catchMePlayer = {};
 var extraTime = {};
 var extraLives = {};
 var lives = 3;
 var music = document.getElementById("myAudio");
+var keyPress = 4;
+var currentGameData;
+var numberOfMonsters;
+var numberOfBalls;
 
-function startGame() {
+function startGame(gameData) {
+    currentGameData = gameData;
+
     playAudio();
+
+    timeLeft = Math.floor(gameData.gameDuration);
+    numberOfMonsters = currentGameData.numberOfMonsters;
 
     board = new Array();
     score = 0;
     pac_color = "yellow";
     var cnt = 100;
-    var food_remain = 50;
+    var food_remain = currentGameData.numberOfBalls;
+    numberOfBalls = currentGameData.numberOfBalls;
     var pacman_remain = 1;
     start_time = new Date();
 
@@ -66,6 +81,12 @@ function startGame() {
     }
 
     monster1Cord = {x: 0, y: 0};
+    if (numberOfMonsters >= 2) {
+        monster2Cord = {x: 9, y: 0};
+    }
+    if (numberOfMonsters >= 3) {
+        monster3Cord = {x: 0, y: 9};
+    }
     catchMePlayer = {x: 9, y: 9};
     var emptyCell = findRandomEmptyCell(board);
     extraTime = {x: emptyCell[0], y: emptyCell[1]};
@@ -80,16 +101,23 @@ function startGame() {
     addEventListener("keyup", function (e) {
         keysDown[e.keyCode] = false;
     }, false);
-    interval = setInterval(UpdatePosition, 250);
+    interval = setInterval(UpdatePosition, 100);
     monster1Interval = setInterval(moveMonster1, 750);
+    if (numberOfMonsters >= 2) {
+        monster2Interval = setInterval(moveMonster2, 750);
+    }
+    if (numberOfMonsters >= 3) {
+        monster3Interval = setInterval(moveMonster3, 750);
+    }
     catchMeInterval = setInterval(catchMeMove, 750);
+    timeInterval = setInterval(updateTime, 1000);
 }
 
 
 function findRandomEmptyCell(board) {
     var i = Math.floor((Math.random() * 9) + 1);
     var j = Math.floor((Math.random() * 9) + 1);
-    while (board[i][j] != 0) {
+    while (board[i][j] != 0 && i != 0 & i != 9 && j != 0 && j != 9) {
         i = Math.floor((Math.random() * 9) + 1);
         j = Math.floor((Math.random() * 9) + 1);
     }
@@ -115,7 +143,6 @@ function Draw() {
     var lifesElement = document.getElementById("lives");
     var userElement = document.getElementById("userName");
 
-
     canvas.width = canvas.width; //clean board
     lblScore.value = score;
     lblTime.value = timeLeft;
@@ -127,6 +154,26 @@ function Draw() {
             center.x = i * 60 + 30;
             center.y = j * 60 + 30;
             if (monster1Cord.x == j && monster1Cord.y == i) {
+                context.beginPath();
+                context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+                context.lineTo(center.x, center.y);
+                context.fillStyle = "red"; //color
+                context.fill();
+                context.beginPath();
+                context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+                context.fillStyle = "black"; //color
+                context.fill();
+            } else if (monster2Cord.x == j && monster2Cord.y == i && numberOfMonsters >= 2) {
+                context.beginPath();
+                context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+                context.lineTo(center.x, center.y);
+                context.fillStyle = "red"; //color
+                context.fill();
+                context.beginPath();
+                context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+                context.fillStyle = "black"; //color
+                context.fill();
+            } else if (monster3Cord.x == j && monster3Cord.y == i && numberOfMonsters >= 3) {
                 context.beginPath();
                 context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
                 context.lineTo(center.x, center.y);
@@ -158,15 +205,50 @@ function Draw() {
                 context.fillStyle = "black"; //color
                 context.fill();
             } else if (board[i][j] == 2) {
-                context.beginPath();
-                context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
-                context.lineTo(center.x, center.y);
-                context.fillStyle = pac_color; //color
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
-                context.fillStyle = "black"; //color
-                context.fill();
+                if (keyPress == 4) {
+                    context.beginPath();
+                    context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+                    context.lineTo(center.x, center.y);
+                    context.fillStyle = pac_color; //color
+                    context.fill();
+                    context.beginPath();
+                    context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+                    context.fillStyle = "black"; //color
+                    context.fill();
+                }
+                if (keyPress == 3) {
+                    context.beginPath();
+                    context.arc(center.x, center.y, 30, 1.15 * Math.PI, 2.85 * Math.PI); // half circle
+                    context.lineTo(center.x, center.y);
+                    context.fillStyle = pac_color; //color
+                    context.fill();
+                    context.beginPath();
+                    context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+                    context.fillStyle = "black"; //color
+                    context.fill();
+                }
+                if (keyPress == 1) {
+                    context.beginPath();
+                    context.arc(center.x, center.y, 30, -0.35 * Math.PI, 1.35 * Math.PI); // half circle
+                    context.lineTo(center.x, center.y);
+                    context.fillStyle = pac_color; //color
+                    context.fill();
+                    context.beginPath();
+                    context.arc(center.x - 15, center.y - 5, 5, 0, 2 * Math.PI); // circle
+                    context.fillStyle = "black"; //color
+                    context.fill();
+                }
+                if (keyPress == 2) {
+                    context.beginPath();
+                    context.arc(center.x, center.y, 30, 0.65 * Math.PI, 2.35 * Math.PI); // half circle
+                    context.lineTo(center.x, center.y);
+                    context.fillStyle = pac_color; //color
+                    context.fill();
+                    context.beginPath();
+                    context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+                    context.fillStyle = "black"; //color
+                    context.fill();
+                }
             } else if (board[i][j] == 5 || board[i][j] == 6 || board[i][j] == 7) {
                 context.beginPath();
                 context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
@@ -185,9 +267,12 @@ function Draw() {
     }
 }
 
+function updateTime() {
+    timeLeft -= 1;
+}
+
 function UpdatePosition() {
-    timeLeft -= 0.25;
-    if (timeLeft == 0) endGame();
+    if (timeLeft <= 0) endGame();
 
     board[shape.i][shape.j] = 0;
     var x = GetKeyPressed()
@@ -195,36 +280,51 @@ function UpdatePosition() {
         if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
             shape.j--;
         }
+        keyPress = x;
     }
     if (x == 2) {
         if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
             shape.j++;
         }
+        keyPress = x;
     }
     if (x == 3) {
         if (shape.i > 0 && board[shape.i - 1][shape.j] != 4) {
             shape.i--;
         }
+        keyPress = 3;
     }
     if (x == 4) {
         if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
             shape.i++;
         }
+        keyPress = 4;
     }
     if (board[shape.i][shape.j] == 5 || board[shape.i][shape.j] == 6 || board[shape.i][shape.j] == 7) {
         if (board[shape.i][shape.j] == 5) score += 5;
         if (board[shape.i][shape.j] == 6) score += 15;
         if (board[shape.i][shape.j] == 7) score += 25;
+        numberOfBalls--;
+        console.log(numberOfBalls);
     }
 
-    if (shape.i === extraTime.y && shape.j === extraTime.x) {
+    if (catchMePlayer.x === shape.j && catchMePlayer.y === shape.i) uploadBonus();
+    if (monster1Cord.x === shape.j && monster1Cord.y === shape.i) reduceLives();
+    if (monster2Cord.x === shape.j && monster2Cord.y === shape.i) reduceLives();
+    if (monster3Cord.x === shape.j && monster3Cord.y === shape.i) reduceLives();
+
+    if (numberOfBalls <= 0) {
+        endGame();
+    }
+
+    if (shape.i == extraTime.y && shape.j == extraTime.x) {
         extraTime.x = -1;
         extraTime.y = -1;
         timeLeft += 30;
     }
 
 
-    if (shape.i === extraLives.y && shape.j === extraLives.x) {
+    if (shape.i == extraLives.y && shape.j == extraLives.x) {
         extraLives.x = -1;
         extraLives.y = -1;
         lives += 1;
@@ -236,7 +336,7 @@ function UpdatePosition() {
     if (score >= 20 && time_elapsed <= 10) {
         pac_color = "green";
     }
-    if (score == 50) {
+    if (numberOfBalls == 0) {
         endGame();
     }
     else {
@@ -272,6 +372,22 @@ function moveMonster1() {
     monster1Cord.y = movement.y;
 
     if (monster1Cord.x === shape.j && monster1Cord.y === shape.i) reduceLives();
+}
+
+function moveMonster2() {
+    var movement = chooseMovement(monster2Cord, true, false);
+    monster2Cord.x = movement.x;
+    monster2Cord.y = movement.y;
+
+    if (monster2Cord.x === shape.j && monster2Cord.y === shape.i) reduceLives();
+}
+
+function moveMonster3() {
+    var movement = chooseMovement(monster3Cord, true, false);
+    monster3Cord.x = movement.x;
+    monster3Cord.y = movement.y;
+
+    if (monster3Cord.x === shape.j && monster3Cord.y === shape.i) reduceLives();
 }
 
 function catchMeMove() {
@@ -312,10 +428,20 @@ function chooseMovement(obj, toSort, toRandom) {
 }
 
 function reduceLives() {
-    // window.alert("You have lost a live!");
+    window.alert("You have lost a live!");
 
     monster1Cord.x = 0;
     monster1Cord.y = 0;
+
+    if (numberOfMonsters >= 2) {
+        monster2Cord.x = 9;
+        monster2Cord.y = 0;
+    }
+
+    if (numberOfMonsters >= 3) {
+        monster3Cord.x = 0;
+        monster3Cord.y = 9;
+    }
 
     board[shape.i][shape.j] = 0;
     var emptyCell = findRandomEmptyCell(board);
@@ -334,33 +460,37 @@ function endGame() {
     if (timeLeft == 0 && score < 150) alert("You can do better");
     else if (timeLeft == 0 && score > 150) alert("We have a winner");
 
-    location.reload();
+    newGame();
 }
 
 function newGame() {
     stopGame();
-    event.preventDefault()
     shape = new Object();
     board = undefined;
     score = undefined;
     pac_color = undefined;
     start_time = undefined;
-    timeLeft = 60;
+    timeLeft = currentGameData.gameDuration;
     time_elapsed = undefined;
     interval = undefined;
     monster1Interval = undefined;
+    monster2Interval = undefined;
+    monster3Interval = undefined;
     catchMeInterval = undefined;
+    timeInterval = undefined;
     balls = [];
     monster1Cord = {};
+    monster2Cord = {};
+    monster3Cord = {};
     catchMePlayer = {};
     extraTime = {};
     extraLives = {};
     lives = 3;
-    startGame();
+    startGame(currentGameData);
 }
 
 function playAudio() {
-    // music.play();
+    music.play();
 }
 
 function pauseAudio() {
@@ -370,8 +500,13 @@ function pauseAudio() {
 function stopGame() {
     clearInterval(interval);
     clearInterval(monster1Interval);
+    if (numberOfMonsters >= 2) {
+        clearInterval(monster2Interval);
+    }
+    if (numberOfMonsters >= 3) {
+        clearInterval(monster3Interval);
+    }
     clearInterval(catchMeInterval);
+    clearInterval(timeInterval);
     pauseAudio();
 }
-
-
