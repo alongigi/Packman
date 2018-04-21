@@ -4,47 +4,44 @@ $(document).ready(function (e) {
         $("#registrationBirthDay").datepicker();
     });
 
-    $('#registerSubmitButton').one('click', function () {
+});
 
-        $('#registrationForm').validate({
-            rules: {
-                registrationUserName: {
-                    pattern: '^[a-zA-Z]*$',
-                    required: true
-                },
-                registrationPassword: {
-                    pattern: '^(?=.*\\d)(?=.*[a-zA-Z]).{8,200}$',
-                    required: true
-                },
-                registrationFirstName: {
-                    pattern: '^[a-zA-Z]*$',
-                    required: true
-                },
-                registrationLastName: {
-                    pattern: '^[a-zA-Z]*$',
-                    required: true
-                },
-                registrationEmail: {
-                    email: true,
-                    required: true,
-                },
-                registrationBirthDay: {
-                    date: true,
-                    required: true,
-                },
-
+function onSubmitRegister() {
+    $('#registrationForm').validate({
+        rules: {
+            registrationUserName: {
+                pattern: '^[a-zA-Z]*$',
+                required: true
             },
-        });
-
-        event.preventDefault();
-        const form = $("#registrationForm");
-        if (form.valid()) {
-            createAccount();
-        }
+            registrationPassword: {
+                pattern: '^(?=.*\\d)(?=.*[a-zA-Z]).{8,200}$',
+                required: true
+            },
+            registrationFirstName: {
+                pattern: '^[a-zA-Z]*$',
+                required: true
+            },
+            registrationLastName: {
+                pattern: '^[a-zA-Z]*$',
+                required: true
+            },
+            registrationEmail: {
+                email: true,
+                required: true,
+            },
+            registrationBirthDay: {
+                date: true,
+                required: true,
+            },
+        },
     });
 
-
-});
+    event.preventDefault();
+    const form = $("#registrationForm");
+    if (form.valid()) {
+        createAccount();
+    }
+}
 
 function createAccount() {
     const userName = document.getElementById("registrationUserName").value;

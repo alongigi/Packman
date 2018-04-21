@@ -486,6 +486,9 @@ function newGame() {
     extraTime = {};
     extraLives = {};
     lives = 3;
+
+    alert("New game has started. Good luck!");
+
     startGame(currentGameData);
 }
 
