@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="066d4bb7-fcd5-48f9-998e-5a78037d0107" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/PACKMAN.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PACKMAN.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/code/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/code/register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,16 +19,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="65" column="48" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="48" />
+            <state relative-caret-position="342">
+              <caret line="249" column="18" selection-start-line="249" selection-start-column="18" selection-end-line="249" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/game.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
@@ -60,7 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>moveMonster2</find>
       <find>monster1Interval</find>
       <find>50</find>
       <find>endga</find>
@@ -90,6 +89,7 @@
       <find>time_elapsed</find>
       <find>start_time</find>
       <find>regis</find>
+      <find>aspnetcdn</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -112,9 +112,9 @@
         <option value="$PROJECT_DIR$/style/game.css" />
         <option value="$PROJECT_DIR$/style/navbar.css" />
         <option value="$PROJECT_DIR$/style/main.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/code/register.js" />
         <option value="$PROJECT_DIR$/code/game.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -217,7 +217,7 @@
       <workItem from="1524148006609" duration="26000" />
       <workItem from="1524167001959" duration="6000" />
       <workItem from="1524216907644" duration="8000" />
-      <workItem from="1524293459619" duration="1802000" />
+      <workItem from="1524293459619" duration="4302000" />
     </task>
     <task id="LOCAL-00001" summary="changed">
       <created>1524136401955</created>
@@ -226,11 +226,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524136401955</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changed">
+      <created>1524295406632</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1524295406633</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101336000" />
+    <option name="totallyTimeSpent" value="103836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
@@ -603,17 +610,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="65" column="48" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="489" column="43" selection-start-line="489" selection-start-column="43" selection-end-line="489" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="249" column="18" selection-start-line="249" selection-start-column="18" selection-end-line="249" selection-end-column="18" />
         </state>
       </provider>
     </entry>
